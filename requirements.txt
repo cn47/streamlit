@@ -1,0 +1,6 @@
+click
+glances
+numpy
+pandas
+plotly
+streamlit

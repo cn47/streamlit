@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  streamlit:
+    user: ${UID}:${GID}
+    container_name: 'streamlit'
+    env_file:
+      - env_file.env
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /opt
+    volumes:
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/group:/etc/group:ro
+      - ./opt:/opt
+    ports:
+      - '8501:8501'
+    tty: true
+    command: streamlit run --server.runOnSave true ./app.py
